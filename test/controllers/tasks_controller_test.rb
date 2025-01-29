@@ -15,7 +15,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    @tasks = Task.all.build(:project => @project, :user => @user)
     get tasks_url
     assert_response :success
   end
