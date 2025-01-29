@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :needed_instances_vars, only: %i[ show new edit create ]
 
   # GET /tasks or /tasks.json
   def index
@@ -8,27 +9,21 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
-    @users = User.all
-    @projects = Project.all
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
-    @users = User.all
-    @projects = Project.all
   end
 
   # GET /tasks/1/edit
   def edit
-    @users = User.all
-    @projects = Project.all
   end
 
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
-
+    
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: "Task was successfully created." }
@@ -67,6 +62,11 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params.expect(:id))
+    end
+
+    def needed_instances_vars
+      @users = User.all
+      @projects = Project.all
     end
 
     # Only allow a list of trusted parameters through.
