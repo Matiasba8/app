@@ -1,0 +1,9 @@
+<div>
+<b> Total de tareas:</b> <%= @tasks.count %>
+</div>
+<div>
+<b>Tareas completedas:</b> <%= @tasks.where(completed: true).count %>
+</div>
+<div>
+<b>Tareas pendientes:</b>  <%= @tasks.where(completed: false).count %>
+</div>
