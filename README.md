@@ -7,3 +7,5 @@ Para crear una tarea se requiere de los siguientes pasos:
 4. Ver informe del proyecto de las tareas completadas como incompletas (1 para completa y 0 para incompleta). 
 
 Para la ejecucción de los test basta correr usando *rails test* (mini test de rails)
+
+Correr aplicación con bin/dev
