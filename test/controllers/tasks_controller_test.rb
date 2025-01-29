@@ -2,16 +2,20 @@ require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
+    #INIT
     @task = tasks(:one)
-    @task.project = projects(:one)
-    @task.user = users(:one)
-    p "DEBUG"
-    p @task.project.inspect
-    p @task.user.inspect
+    @project = projects(:one)
+    @user = users(:one)
+
+    @task.project = @project
+    @task.user = @user
     @task.save
+
+    @tasks = Task.all.build(:project => @project, :user => @user)
   end
 
   test "should get index" do
+    @tasks = Task.all.build(:project => @project, :user => @user)
     get tasks_url
     assert_response :success
   end

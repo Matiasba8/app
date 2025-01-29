@@ -21,6 +21,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @users = User.all
+    @projects = Project.all
   end
 
   # POST /tasks or /tasks.json
