@@ -3,6 +3,12 @@ require "test_helper"
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @task = tasks(:one)
+    @task.project = projects(:one)
+    @task.user = users(:one)
+    p "DEBUG"
+    p @task.project.inspect
+    p @task.user.inspect
+    @task.save
   end
 
   test "should get index" do
@@ -17,7 +23,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create task" do
     assert_difference("Task.count") do
-      post tasks_url, params: { task: { completed: @task.completed, description: @task.description, title: @task.title, user_id: @task.user_id } }
+      post tasks_url, params: { task: { completed: @task.completed, description: @task.description, title: @task.title, user_id: @task.user_id, project_id: @task.project.id } }
     end
 
     assert_redirected_to task_url(Task.last)
